@@ -1,0 +1,347 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Player = game.Players.LocalPlayer
+local Window = OrionLib:MakeWindow({Name = "Jelszó - Rendszer", HidePremium = false, SaveConfig = true, IntroEnabled = true})
+
+OrionLib:MakeNotification({
+	Name = "Bejelentkezve",
+	Content = "Sikeresen bejelentkeztél "..Player.Name.. " néven.",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+--https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven
+--_G.Key = "@milanlex"
+_G.KeyInput = "string"
+_G.Key = "@milanlex"
+
+function MakeScriptHub()
+    local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Milan's - Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Betöltés"})
+
+--Main
+
+local Main = Window:MakeTab({
+	Name = "Főmenü",
+	PremiumOnly = false
+})
+
+local MainSection = Main:AddSection({
+	Name = "Szkriptek"
+})
+
+Main:AddButton({
+	Name = "owl hub",
+	Callback = function()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
+  	end    
+})
+
+Main:AddButton({
+	Name = "esp",
+	Callback = function()
+          loadstring(game:HttpGet("https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua"))()
+  	end    
+})
+
+
+Main:AddButton({
+	Name = "Inf Yield",
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  	end    
+})
+
+Main:AddButton({
+	Name = "Brookhaven",
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven'))()
+  	end    
+            })
+
+Main:AddButton({
+	Name = "dex v4",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SpaceSpiffer/Scripts/main/Script5", true))()
+  	end    
+})
+
+Main:AddButton({
+	Name = "Energize Animation GUI",
+	Callback = function()
+  loadstring(game:HttpGet("https://pastebin.com/raw/RmD3qNp7", true))()
+end
+})
+
+game.Players.PlayerAdded:Connect(playerAdded)
+ 
+    local Tab = Window:MakeTab({
+    	Name = "Mozgás",
+    	PremiumOnly = false
+    })
+
+    Tab:AddSlider({
+	    Name = "Gyorsaság",
+	    Min = 16,
+	    Max = 500,
+	    Default = 16,
+	    Color = Color3.fromRGB(255,255,255),
+	    Callback = function(Value)
+ 
+	        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	    end    
+    })
+ 
+    Tab:AddSlider({
+	    Name = "Ugrás Erősség",
+	    Min = 50,
+	    Max = 500,
+	    Default = 50,
+	    Color = Color3.fromRGB(255,255,255),
+	    Callback = function(Value)
+		    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	    end    
+    })
+
+
+
+Tab:AddButton({
+	Name = "Mobil Repülés",
+	Callback = function()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "repülés, nyomd meg a F gombot",
+	Callback = function()
+        repeat wait() 
+    until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Torso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
+local mouse = game.Players.LocalPlayer:GetMouse() 
+repeat wait() until mouse
+local plr = game.Players.LocalPlayer 
+local torso = plr.Character.Torso 
+local flying = false
+local deb = true 
+local ctrl = {f = 0, b = 0, l = 0, r = 0} 
+local lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+local maxspeed = 50 
+local speed = 0 
+ 
+function Fly() 
+local bg = Instance.new("BodyGyro", torso) 
+bg.P = 9e4 
+bg.maxTorque = Vector3.new(9e9, 9e9, 9e9) 
+bg.cframe = torso.CFrame 
+local bv = Instance.new("BodyVelocity", torso) 
+bv.velocity = Vector3.new(0,0.1,0) 
+bv.maxForce = Vector3.new(9e9, 9e9, 9e9) 
+repeat wait() 
+plr.Character.Humanoid.PlatformStand = true 
+if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then 
+speed = speed+.5+(speed/maxspeed) 
+if speed > maxspeed then 
+speed = maxspeed 
+end 
+elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then 
+speed = speed-1 
+if speed < 0 then 
+speed = 0 
+end 
+end 
+if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then 
+bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r} 
+elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then 
+bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+else 
+bv.velocity = Vector3.new(0,0.1,0) 
+end 
+bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
+until not flying 
+ctrl = {f = 0, b = 0, l = 0, r = 0} 
+lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+speed = 0 
+bg:Destroy() 
+bv:Destroy() 
+plr.Character.Humanoid.PlatformStand = false 
+end 
+mouse.KeyDown:connect(function(key) 
+if key:lower() == "f" then 
+if flying then flying = false 
+else 
+flying = true 
+Fly() 
+end 
+elseif key:lower() == "w" then 
+ctrl.f = 1 
+elseif key:lower() == "s" then 
+ctrl.b = -1 
+elseif key:lower() == "a" then 
+ctrl.l = -1 
+elseif key:lower() == "d" then 
+ctrl.r = 1 
+end 
+end) 
+mouse.KeyUp:connect(function(key) 
+if key:lower() == "w" then 
+ctrl.f = 0 
+elseif key:lower() == "s" then 
+ctrl.b = 0 
+elseif key:lower() == "a" then 
+ctrl.l = 0 
+elseif key:lower() == "d" then 
+ctrl.r = 0 
+end 
+end)
+Fly()
+  	end    
+})
+
+local my = Window:MakeTab({
+	Name = "én scripteim",
+	PremiumOnly = false
+})
+
+local mysection = my:AddSection({
+	Name = "Scriptek"
+})
+
+
+
+local egyeb = Window:MakeTab({
+	Name = "Egyéb",
+	PremiumOnly = false
+})
+
+egyeb:AddButton({
+	Name = "telekinisis",
+	Callback = function()
+   loadstring(game:HttpGet("https://pastebin.com/raw/KduE9A6z"))()
+  	end    
+})
+
+egyeb:AddButton({
+	Name = "tp eszköz",
+	Callback = function()
+local plr = game:GetService("Players").LocalPlayer
+local mouse = plr:GetMouse()
+
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Click Teleport"
+
+tool.Activated:Connect(function()
+local root = plr.Character.HumanoidRootPart
+local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
+local offset = pos-root.Position
+root.CFrame = root.CFrame+offset
+end)
+
+tool.Parent = plr.Backpack
+  	end    
+})
+
+egyeb:AddButton({
+	Name = "btools visual",
+	Callback = function()
+    a = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+    a.BinType = 2
+    b = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+    b.BinType = 3
+    c = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+    c.BinType = 4
+  	end    
+})
+
+egyeb:AddButton({
+	Name = "úrja életés",
+	Callback = function()
+  game.Players.LocalPlayer.Character.Head:Destroy()
+if game.Players.LocalPlayer.Character.Humanoid.Health < 5 then 
+    local deathmanok = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").position
+    wait(1.5)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(deathmanok)
+end
+  	end    
+})
+
+egyeb:AddButton({
+	Name = "erős úrja életés",
+	Callback = function()
+  game.Players.LocalPlayer.Character.Humanoid.Name = 1
+local l = game.Players.LocalPlayer.Character["1"]:Clone()
+l.Parent = game.Players.LocalPlayer.Character
+l.Name = "Humanoid"
+wait()
+game.Players.LocalPlayer.Character["1"]:Destroy()
+game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+game.Players.LocalPlayer.Character.Animate.Disabled = true
+wait()
+game.Players.LocalPlayer.Character.Animate.Disabled = false
+game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
+wait()
+Location = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+wait()
+local prt = Instance.new("Model", workspace);
+Instance.new("Part", prt).Name="Torso";
+Instance.new("Part", prt).Name="Head";
+Instance.new("Humanoid", prt).Name="Humanoid";
+game.Players.LocalPlayer.Character=prt
+wait(6)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Location
+  	end    
+})
+
+
+OrionLib:MakeNotification({
+	Name = "Üdvözöllek",
+	Content = "A hub aktiválódott.",
+	Image = "rbxassetid://4483345998",
+	Time = 10
+})
+
+end
+
+function CorrectKeyNotification()
+    OrionLib:MakeNotification({
+        Name = "Érvényes Jelszó",
+        Content = "Érvényes jelszót irtál be!",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end 
+
+function IncorrectKeyNotification()
+    OrionLib:MakeNotification({
+        Name = "Érvénytelen Jelszó",
+        Content = "Érvénytelen jelszót irtál be!",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end 
+
+local Tab = Window:MakeTab({
+	Name = "Jelszó",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddTextbox({
+	Name = "Ide ird be a jelszót",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+	   _G.KeyInput = Value
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Jelszó ellenőrzése",
+	Callback = function()
+	   if _G.KeyInput == _G.Key then
+       MakeScriptHub()
+       CorrectKeyNotification()
+       else
+           IncorrectKeyNotification()
+       end
+	end	  
+})
